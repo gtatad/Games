@@ -183,7 +183,7 @@ document.addEventListener("touchend",function(){
 	// 若滑动距离太小 视为点击 不触发事件
 	var deltaX = endX - startX;
 	var deltaY = endY - startY;
-	if(Math.abs(deltaX) < 0.3*documentWidth && Math.abs(deltaY) < 0.3*documentWidth){
+	if(Math.abs(deltaX) < 0.1*documentWidth && Math.abs(deltaY) < 0.1*documentWidth){
 		return;
 	}
 	if (Math.abs(deltaX) > Math.abs(deltaY)) {
