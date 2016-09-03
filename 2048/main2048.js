@@ -207,14 +207,14 @@ document.addEventListener("touchend",function(){
 		if (deltaY > 0) {
 			// move down
 			if(moveDown()){
-				setTimeout(generateOneNumber,110);
-				setTimeout(isgameover,200);
+				setTimeout(generateOneNumber,210);
+				setTimeout(isgameover,300);
 			}
 		}else{
 			// move up
 			if(moveUp()){
-				setTimeout(generateOneNumber,100);
-				setTimeout(isgameover,200);
+				setTimeout(generateOneNumber,210);
+				setTimeout(isgameover,300);
 			}
 		}
 
@@ -230,7 +230,8 @@ function isgameover(){
 function gameover(){
 	alert("GAME OVER");
 }
-
+gameover();
+// 移动
 // 向左移动
 function moveLeft(){
 	// 判断能否移动
@@ -378,7 +379,7 @@ function moveDown(){
 						board[i][j] = 0;
 						hasConflicted[k][j] = true;
 						// add score
-						score += board[k][i];
+						score += board[k][j];
 						updateScore(score);
 						continue;
 					}

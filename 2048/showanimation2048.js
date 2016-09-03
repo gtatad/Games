@@ -22,7 +22,7 @@ function showMoveAnimation(fromX,fromY,toX,toY){
 	numberCell.animate({
 		top:getPosTop(toX,toY),
 		left:getPosLeft(toX,toY)
-	},100);
+	},200);
 }
 // 更新分数
 function updateScore(score){
