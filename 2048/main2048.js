@@ -207,13 +207,13 @@ document.addEventListener("touchend",function(){
 		if (deltaY > 0) {
 			// move down
 			if(moveDown()){
-				setTimeout(generateOneNumber,210);
+				setTimeout(generateOneNumber,110);
 				setTimeout(isgameover,300);
 			}
 		}else{
 			// move up
 			if(moveUp()){
-				setTimeout(generateOneNumber,210);
+				setTimeout(generateOneNumber,110);
 				setTimeout(isgameover,300);
 			}
 		}
@@ -230,7 +230,6 @@ function isgameover(){
 function gameover(){
 	alert("GAME OVER");
 }
-gameover();
 // 移动
 // 向左移动
 function moveLeft(){
@@ -269,7 +268,7 @@ function moveLeft(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,200);
+	setTimeout(updateBoardView,250);
 }
 // 向右移动
 function moveRight(){
@@ -309,7 +308,7 @@ function moveRight(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,200);
+	setTimeout(updateBoardView,250);
 }
 // 向上移动
 function moveUp(){
@@ -348,7 +347,7 @@ function moveUp(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,200);
+	setTimeout(updateBoardView,250);
 }
 // 向下移动
 function moveDown(){
@@ -388,5 +387,5 @@ function moveDown(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,200);
+	setTimeout(updateBoardView,250);
 }
