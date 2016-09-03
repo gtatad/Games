@@ -183,7 +183,7 @@ document.addEventListener("touchend",function(){
 	// 若滑动距离太小 视为点击 不触发事件
 	var deltaX = endX - startX;
 	var deltaY = endY - startY;
-	if(Math.abs(deltaX) < 0.1*documentWidth && Math.abs(deltaY) < 0.1*documentWidth){
+	if(Math.abs(deltaX) < 0.05*documentWidth && Math.abs(deltaY) < 0.05*documentWidth){
 		return;
 	}
 	if (Math.abs(deltaX) > Math.abs(deltaY)) {
@@ -208,13 +208,13 @@ document.addEventListener("touchend",function(){
 			// move down
 			if(moveDown()){
 				setTimeout(generateOneNumber,110);
-				setTimeout(isgameover,300);
+				setTimeout(isgameover,200);
 			}
 		}else{
 			// move up
 			if(moveUp()){
 				setTimeout(generateOneNumber,110);
-				setTimeout(isgameover,300);
+				setTimeout(isgameover,200);
 			}
 		}
 
@@ -230,7 +230,7 @@ function isgameover(){
 function gameover(){
 	alert("GAME OVER");
 }
-// 移动
+
 // 向左移动
 function moveLeft(){
 	// 判断能否移动
@@ -378,7 +378,7 @@ function moveDown(){
 						board[i][j] = 0;
 						hasConflicted[k][j] = true;
 						// add score
-						score += board[k][j];
+						score += board[k][i];
 						updateScore(score);
 						continue;
 					}
