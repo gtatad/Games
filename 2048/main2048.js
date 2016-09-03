@@ -95,7 +95,7 @@ function updateBoardView() {
 		}
 	}
 	$(".number-cell").css("line-height", cellSideLength + "px")
-	$(".number-cell").css("font-size", 0.6 * cellSideLength + "px")
+	$(".number-cell").css("font-size", 0.4 * cellSideLength + "px")
 
 }
 // 随机生成数字
