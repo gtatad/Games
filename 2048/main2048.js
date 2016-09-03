@@ -268,7 +268,7 @@ function moveLeft(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,150);
+	setTimeout(updateBoardView,100);
 }
 // 向右移动
 function moveRight(){
@@ -308,7 +308,7 @@ function moveRight(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,150);
+	setTimeout(updateBoardView,100);
 }
 // 向上移动
 function moveUp(){
@@ -347,7 +347,7 @@ function moveUp(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,150);
+	setTimeout(updateBoardView,100);
 }
 // 向下移动
 function moveDown(){
@@ -387,5 +387,5 @@ function moveDown(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,150);
+	setTimeout(updateBoardView,100);
 }
