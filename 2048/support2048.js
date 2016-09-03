@@ -1,27 +1,27 @@
 // support2048.js
-documentWidth = window.screen.availWidth;
-gridContainerWidth 	= 0.92*documentWidth;
-cellSideLength 		= 0.16*documentWidth;
-cellSpace 			= 0.04*documentWidth;
+documentWidth      = window.screen.availWidth;
+gridContainerWidth = 0.92 * documentWidth;
+cellSideLength     = 0.16 * documentWidth;
+cellSpace          = 0.04 * documentWidth;
 // 获得位置
-function getPosTop(i,j){
-	return cellSpace+i*(cellSideLength+cellSpace);
+function getPosTop(i, j) {
+	return cellSpace + i * (cellSideLength + cellSpace);
 }
 
-function getPosLeft(i,j){
-	return cellSpace+j*(cellSideLength+cellSpace);
+function getPosLeft(i, j) {
+	return cellSpace + j * (cellSideLength + cellSpace);
 }
 // 颜色样式
-function getNumberColor(number){
+function getNumberColor(number) {
 	if (number <= 4) {
 		return "#776e65";
-	}else{
+	} else {
 		return "#fff";
 	}
 }
 // 颜色样式
-function getBackgroundColor(number){
-	switch(number){
+function getBackgroundColor(number) {
+	switch (number) {
 		case 2:
 			return "#eee4da";
 			break;
@@ -64,26 +64,26 @@ function getBackgroundColor(number){
 	}
 }
 // 是否有空余格子
-function nospace(board){
+function nospace(board) {
 	for (var i = 0; i < 4; i++) {
 		for (var j = 0; j < 4; j++) {
-			if(board[i][j] == 0){
-			return false;
+			if (board[i][j] == 0) {
+				return false;
 
 			}
 		}
 	}
-	return true; 
+	return true;
 }
 // 是否可以向左移动
 // 1 左边的格子为0
 // 2 和左边的值相等
 // 满足一条 可以移动
-function canMoveLeft(board){
+function canMoveLeft(board) {
 	for (var i = 0; i < 4; i++) {
 		for (var j = 1; j < 4; j++) {
-			if(board[i][j] != 0){
-				if (board[i][j-1] == 0 || board[i][j-1] == board[i][j]) {
+			if (board[i][j] != 0) {
+				if (board[i][j - 1] == 0 || board[i][j - 1] == board[i][j]) {
 					return true;
 				}
 			}
@@ -91,11 +91,12 @@ function canMoveLeft(board){
 	}
 	return false;
 }
-function canMoveRight(board){
+
+function canMoveRight(board) {
 	for (var i = 0; i < 4; i++) {
 		for (var j = 2; j >= 0; j--) {
-			if(board[i][j] != 0){
-				if (board[i][j+1] == 0 || board[i][j+1] == board[i][j]) {
+			if (board[i][j] != 0) {
+				if (board[i][j + 1] == 0 || board[i][j + 1] == board[i][j]) {
 					return true;
 				}
 			}
@@ -103,11 +104,12 @@ function canMoveRight(board){
 	}
 	return false;
 }
-function canMoveUp(board){
+
+function canMoveUp(board) {
 	for (var i = 1; i < 4; i++) {
 		for (var j = 0; j < 4; j++) {
-			if(board[i][j] != 0){
-				if (board[i-1][j] == 0 || board[i-1][j] == board[i][j]) {
+			if (board[i][j] != 0) {
+				if (board[i - 1][j] == 0 || board[i - 1][j] == board[i][j]) {
 					return true;
 				}
 			}
@@ -115,11 +117,12 @@ function canMoveUp(board){
 	}
 	return false;
 }
-function canMoveDown(board){
+
+function canMoveDown(board) {
 	for (var i = 2; i >= 0; i--) {
 		for (var j = 0; j < 4; j++) {
-			if(board[i][j] != 0){
-				if (board[i+1][j] == 0 || board[i+1][j] == board[i][j]) {
+			if (board[i][j] != 0) {
+				if (board[i + 1][j] == 0 || board[i + 1][j] == board[i][j]) {
 					return true;
 				}
 			}
@@ -128,26 +131,27 @@ function canMoveDown(board){
 	return false;
 }
 // 之间是否有障碍物
-function noBlockHorizontal(row,col1,col2,board){
-	for (var i = col1+1; i < col2; i++) {
-		if(board[row][i] != 0){  // 之间存在障碍物
+function noBlockHorizontal(row, col1, col2, board) {
+	for (var i = col1 + 1; i < col2; i++) {
+		if (board[row][i] != 0) { // 之间存在障碍物
 			return false;
 		}
 	}
 	return true;
 }
-function noBlockVertical(col,row1,row2,board){
-	for (var i = row1+1; i < row2; i++) {
-		if(board[i][col] != 0){  // 之间存在障碍物
+
+function noBlockVertical(col, row1, row2, board) {
+	for (var i = row1 + 1; i < row2; i++) {
+		if (board[i][col] != 0) { // 之间存在障碍物
 			return false;
 		}
 	}
 	return true;
 }
 // 没有可移动的
-function noMove(){
-	if (canMoveLeft(board)||canMoveRight(board)||canMoveUp(board)||canMoveDown(board)) { // 尚可移动
-		return false;  // 可移动
+function noMove() {
+	if (canMoveLeft(board) || canMoveRight(board) || canMoveUp(board) || canMoveDown(board)) { // 尚可移动
+		return false; // 可移动
 	}
 	// 不可移动
 	return true;
