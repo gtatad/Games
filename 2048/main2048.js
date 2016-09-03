@@ -213,7 +213,7 @@ document.addEventListener("touchend",function(){
 		}else{
 			// move up
 			if(moveUp()){
-				setTimeout(generateOneNumber,110);
+				setTimeout(generateOneNumber,100);
 				setTimeout(isgameover,200);
 			}
 		}
@@ -268,7 +268,7 @@ function moveLeft(){
 		}
 	}
 	generateOneNumber();
-	setTimeout(updateBoardView,100);
+	setTimeout(updateBoardView,200);
 }
 // 向右移动
 function moveRight(){
