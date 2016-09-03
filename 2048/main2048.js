@@ -228,9 +228,9 @@ function isgameover() {
 }
 
 function gameover() {
-	console.log("gameover!");
-	alert("GAME OVER");
+	alert("GAME OVER\n"+"您的得分："+score+"\n"+(score<10000?"小笨蛋":"加油！"));
 }
+
 
 // 向左移动
 function moveLeft() {
