@@ -268,7 +268,7 @@ function moveLeft() {
 			}
 		}
 	}
-	setTimeout(updateBoardView, 105);
+	setTimeout(updateBoardView, 110);
 	return true;
 }
 // 向右移动
@@ -308,7 +308,7 @@ function moveRight() {
 			}
 		}
 	}
-	setTimeout(updateBoardView, 105);
+	setTimeout(updateBoardView, 110);
 	return true;
 }
 // 向上移动
@@ -347,7 +347,7 @@ function moveUp() {
 			}
 		}
 	}
-	setTimeout(updateBoardView, 105);
+	setTimeout(updateBoardView, 110);
 	return true;
 }
 // 向下移动
@@ -387,6 +387,6 @@ function moveDown() {
 			}
 		}
 	}
-	setTimeout(updateBoardView, 105);
+	setTimeout(updateBoardView, 110);
 	return true;
 }
