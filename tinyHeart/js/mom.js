@@ -1,35 +1,92 @@
 var momObj = function() {
 	this.x;
 	this.y;
-	this.bigEye  = new Image();
+	this.bigEye = new Image();
 	this.bigBody = new Image();
 	this.bigTail = new Image();
 	this.angle;
+
+	this.bigTailTimer = 0;//
+	this.bigTailCount = 0;
+	this.bigEyeTimer = 0;//
+	this.bigEyeCount = 0;
+	this.bigEyeInterval = 1000;
+	this.bigBodyCount = 0;//
 }
 momObj.prototype.init = function() {
-	this.x = canWidth/2;
-	this.y = canHeight/2;
-	this.bigEye.src  = "./src/bigEye0.png";
-	this.bigBody.src = "./src/bigSwim0.png";
-	this.bigTail.src = "./src/bigTail0.png";
+	this.x = canWidth / 2;
+	this.y = canHeight / 2;
+	// this.bigEye.src = "./src/bigEye0.png";
+	// this.bigBody.src = "./src/bigSwim0.png";
+	// this.bigTail.src = "./src/bigTail0.png";
 	this.angle = 0;
 
 }
 momObj.prototype.draw = function() {
-	// lerb x,y
-	this.x = lerpDistance(mx,this.x,0.98);
-	this.y = lerpDistance(my,this.y,0.98);
+	// 追随鼠标
+	this.x = lerpDistance(mx, this.x, 0.98);
+	this.y = lerpDistance(my, this.y, 0.98);
 	// lerb 角度
 	var deltaY = my - this.y;
 	var deltaX = mx - this.x;
-	var beta = Math.atan2(deltaY,deltaX) + Math.PI;
-	this.angle = lerpAngle(beta,this.angle,0.6);
+	var beta = Math.atan2(deltaY, deltaX) + Math.PI;
+	this.angle = lerpAngle(beta, this.angle, 0.6);
 
 	ctx1.save();
-	ctx1.translate(this.x,this.y);
-	ctx1.rotate(this.angle);	
-	ctx1.drawImage(this.bigTail,-this.bigTail.width/2+30,-this.bigTail.height/2);
-	ctx1.drawImage(this.bigBody,-this.bigBody.width/2,-this.bigBody.height/2);
-	ctx1.drawImage(this.bigEye,-this.bigEye.width/2,-this.bigEye.height/2);
+	ctx1.translate(this.x, this.y);
+	ctx1.rotate(this.angle);
+
+	// 尾巴图片切换
+	var bigTailCount = this.bigTailCount;
+	ctx1.drawImage(bigTail[bigTailCount], -bigTail[bigTailCount].width / 2 + 30, -bigTail[bigTailCount].height / 2);
+	// 身体
+	var bigBodyCount = this.bigBodyCount;
+	if(data.double == 1){		//orangebigBodyOra[bigBodyCount]
+		ctx1.drawImage(bigBodyOra[bigBodyCount], -bigBodyOra[bigBodyCount].width / 2, -bigBodyOra[bigBodyCount].height / 2);
+	}else{
+		ctx1.drawImage(bigBodyBlue[bigBodyCount], -bigBodyBlue[bigBodyCount].width / 2, -bigBodyBlue[bigBodyCount].height / 2);
+	}
+	// 眼睛图片切换
+	var bigEyeCount = this.bigEyeCount;
+	ctx1.drawImage(bigEye[bigEyeCount], -bigEye[bigEyeCount].width / 2, -bigEye[bigEyeCount].height / 2);
 	ctx1.restore();
+
+	// 尾巴切换循环
+	this.bigTailTimer += deltaTime;
+	if (this.bigTailTimer > 50) {
+		this.bigTailCount = (this.bigTailCount + 1) % 8;
+		this.bigTailTimer %= 50;
+	}
+	// 眼睛切换循环
+	this.bigEyeTimer += deltaTime;
+	if (this.bigEyeTimer > this.bigEyeInterval) {
+		this.bigEyeCount = (this.bigEyeCount + 1) % 2;
+		this.bigEyeTimer = 0;
+		if (this.bigEyeCount == 0) {
+			this.bigEyeInterval = Math.random() * 2000 + 1000; //[1000,3000]
+		} else {
+			this.bigEyeInterval = 200;
+		}
+	}
+}
+
+// 切换图片设置
+var bigTail = [];
+for (var i = 0; i < 8; i++) {
+	bigTail[i] = new Image();
+	bigTail[i].src = "./src/bigTail" + i + ".png";
+}
+var bigEye = [];
+for (var i = 0; i < 2; i++) {
+	bigEye[i] = new Image();
+	bigEye[i].src = "./src/bigEye" + i + ".png";
+}
+
+var bigBodyOra = [];
+var bigBodyBlue = [];
+for (var i = 0; i < 8; i++) {
+	bigBodyOra[i] = new Image();
+	bigBodyBlue[i] = new Image();
+	bigBodyOra[i].src = "./src/bigSwim"+i+".png";
+	bigBodyBlue[i].src = "./src/bigSwimBlue"+i+".png";
 }

@@ -16,9 +16,12 @@ var ane;
 var fruit;
 var mom;
 var baby;
+var data;
+var wave;
 
-var mx; 
-var my; 
+var mx;
+var my;
+// 
 
 
 
@@ -55,8 +58,13 @@ function init() {
 	mom.init();
 	baby = new babyObj();
 	baby.init();
-}
+	data = new dataObj();
+	wave = new waveObj();
+	wave.init();
 
+
+}
+// 每一帧都循环的函数
 function gameloop() {
 	window.requestAnimFrame(gameloop);
 	ctx2.clearRect(0, 0, canWidth, canHeight);
@@ -68,14 +76,19 @@ function gameloop() {
 	ctx1.clearRect(0, 0, canWidth, canHeight);
 	mom.draw();
 	momFruitsCollision();
+	momBabyCollision();
 	baby.draw();
-	// 
+	data.draw();
+	wave.draw();
+	// 序列帧变化
 	var now = Date.now();
 	deltaTime = now - lastTime;
 	lastTime = now;
 }
 
 function onMouseMove(e) {
-	mx = e.offsetX;
-	my = e.offsetY;
+	if (!data.gameover) {
+		mx = e.offsetX;
+		my = e.offsetY;
+	}
 }
